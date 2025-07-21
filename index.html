@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odaplace</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="max-width">
+      <div class="background">
+        <header class="display">
+          <h1>Odaplace</h1>
+
+          <select name="city" id="city-select">
+            <option value="newyork">New York</option>
+            <option value="london">London</option>
+            <option value="tokyo">Tokyo</option>
+          </select>
+
+          <span>
+            <input type="text" placeholder="Search for a place" required />
+            <i class='bx bx-search'></i>
+          </span>
+
+          <div class="header-right display">
+            <select name="lang" id="lang-select">
+              <option value="en">Eng</option>
+              <option value="ru">Rus</option>
+              <option value="uz">Uzb</option>
+            </select>
+
+            <button class="modal-btn" data-modal="cart-modal">
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="modal-btn" data-modal="notif-modal">
+              <i class="fas fa-bell"></i>
+            </button>
+            <button class="modal-btn" data-modal="msg-modal">
+              <i class="fas fa-envelope"></i>
+            </button>
+
+            <div class="img-div" id="profile-btn">
+              <img src="assets/image.png" alt="Profile" />
+            </div>
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque consectetur quos inventore doloremque! Facere
+        corporis sequi enim blanditiis. Ducimus at amet voluptatibus repellat doloribus corporis nam recusandae quasi
+        quis adipisci.</h3>
+    </div>
+  </div>
+
+  <div class="modal" id="notif-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure nulla doloremque ab architecto distinctio
+        officia nam aut, veniam maxime impedit ut illum rem ipsam laborum iusto, natus numquam reprehenderit suscipit?
+      </h3>
+    </div>
+  </div>
+
+  <div class="modal" id="msg-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, molestias earum ea repellendus iste
+        laborum, aspernatur rem fuga alias, assumenda saepe corporis! Vero sequi corporis, illo nam maiores corrupti
+        modi.</h3>
+    </div>
+  </div>
+
+  <div class="profile-modal" id="profile-modal">
+    <button class="close-profile">&times;</button>
+    <img src="assets/image.png" alt="Profile" class="img-modal-right">
+    <h2>Ism: <strong>Ibrohim</strong></h2>
+    <h2>Familiyan: <strong>Muhammadaliyev</strong></h2>
+    <h2>Manzil: <strong>Samarqand</strong></h2>
+    <h2>Yoshim: <strong>16</strong></h2>
+  </div>
+
+  <div class="max-width">
+
+    
+    <main>
+    <ul class="main-nav-list">
+      <li>
+        <select name="" id="" aria-label="Category">
+          <option value="">Contegrion</option>
+          <option value="">Contegrion-2</option>
+          <option value="">Contegrion-3</option>
+        </select>
+      </li>
+       <li>Ready to ship</li>
+      <li>Personal Protective</li>
+      <li>
+         <select name="" id="" aria-label="Buyer Central">
+          <option value="">Buyer Central</option>
+          <option value="">Buyer Central-2</option>
+          <option value="">Buyer Central-3</option>
+        </select>
+      </li>
+      <li>
+        <select name="" id="" aria-label="Sell on Odaplace.com">
+          <option value="">Sell on Odaplace.com</option>
+          <option value="">Sell on Odaplace.com-2</option>
+          <option value="">Sell on Odaplace.com-3</option>
+        </select>
+      </li>
+      <li>
+        <select name="" id="" aria-label="Help">
+          <option value="">Help</option>
+          <option value="">Help-2</option>
+          <option value="">Help-3</option>
+        </select>
+      </li>
+    </ul>
+  </main>
+
+
+  </div>
+
+
+  <section></section>
+  <script src="script.js"></script>
+</body>
+
+</html>
