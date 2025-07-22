@@ -54,85 +54,139 @@
     </div>
   </div>
 
+  <!-- Right Side Cart Modal for Add to Cart -->
+  <div id="cart-modal-right" class="modal-right">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeCartModal()">&times;</span>
+      <h3>Add to Cart</h3>
+      <div class="quantity-control">
+        <h4>Enter quantity</h4>
+        <input type="number" id="quantity-input" min="1" value="1">
+        <button id="confirm-btn">Yuborish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Cart View Modal -->
   <div class="modal" id="cart-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
-      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque consectetur quos inventore doloremque! Facere
-        corporis sequi enim blanditiis. Ducimus at amet voluptatibus repellat doloribus corporis nam recusandae quasi
-        quis adipisci.</h3>
+      <h3>Your Cart</h3>
+      <div id="cart-items">
+        <!-- Cart items will be displayed here -->
+      </div>
     </div>
   </div>
 
-  <div class="modal" id="notif-modal">
+  <div class="modal modall" id="notif-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
-      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure nulla doloremque ab architecto distinctio
-        officia nam aut, veniam maxime impedit ut illum rem ipsam laborum iusto, natus numquam reprehenderit suscipit?
-      </h3>
+      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt ipsum eveniet quasi reprehenderit! Eligendi officia labore vitae consequatur ut, in quidem explicabo facere enim, possimus sint accusamus at porro sequi?</h3>
     </div>
   </div>
 
-  <div class="modal" id="msg-modal">
+  <div class="modal modall" id="msg-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
-      <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, molestias earum ea repellendus iste
-        laborum, aspernatur rem fuga alias, assumenda saepe corporis! Vero sequi corporis, illo nam maiores corrupti
-        modi.</h3>
+      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis velit aut sunt autem distinctio quisquam explicabo beatae? Non quos ipsum odio quo. Iste dolore nihil quibusdam blanditiis quas nostrum nulla!</h3>
     </div>
   </div>
 
   <div class="profile-modal" id="profile-modal">
     <button class="close-profile">&times;</button>
     <img src="assets/image.png" alt="Profile" class="img-modal-right">
-    <h2>Ism: <strong>Ibrohim</strong></h2>
-    <h2>Familiyan: <strong>Muhammadaliyev</strong></h2>
-    <h2>Manzil: <strong>Samarqand</strong></h2>
-    <h2>Yoshim: <strong>16</strong></h2>
+    <h2>Name: <strong>Ibrohim</strong></h2>
+    <h2>Email: <strong>muhammadaliyevibrohim@gmail.com</strong></h2>
+    <h2>Manzil: <strong>Samarkand</strong></h2>
   </div>
 
   <div class="max-width">
-
-    
     <main>
-    <ul class="main-nav-list">
-      <li>
-        <select name="" id="" aria-label="Category">
-          <option value="">Contegrion</option>
-          <option value="">Contegrion-2</option>
-          <option value="">Contegrion-3</option>
-        </select>
-      </li>
-       <li>Ready to ship</li>
-      <li>Personal Protective</li>
-      <li>
-         <select name="" id="" aria-label="Buyer Central">
-          <option value="">Buyer Central</option>
-          <option value="">Buyer Central-2</option>
-          <option value="">Buyer Central-3</option>
-        </select>
-      </li>
-      <li>
-        <select name="" id="" aria-label="Sell on Odaplace.com">
-          <option value="">Sell on Odaplace.com</option>
-          <option value="">Sell on Odaplace.com-2</option>
-          <option value="">Sell on Odaplace.com-3</option>
-        </select>
-      </li>
-      <li>
-        <select name="" id="" aria-label="Help">
-          <option value="">Help</option>
-          <option value="">Help-2</option>
-          <option value="">Help-3</option>
-        </select>
-      </li>
-    </ul>
-  </main>
-
-
+      <ul class="main-nav-list">
+        <li>
+          <select name="" id="category-select" aria-label="Category">
+            <option value="all">All Categories</option>
+            <option value="laptops">Laptops</option>
+            <option value="tablets">Tablets</option>
+          </select>
+        </li>
+        <li>Ready to ship</li>
+        <li>Personal Protective</li>
+        <li>
+          <select name="" id="" aria-label="Buyer Central">
+            <option value="">Buyer Central</option>
+          </select>
+        </li>
+        <li>
+          <select name="" id="" aria-label="Sell on Odaplace.com">
+            <option value="">Sell on Odaplace.com</option>
+          </select>
+        </li>
+        <li>
+          <select name="" id="sort-dropdown" aria-label="Help">
+            <option value="Best Match">Best Match</option>
+            <option value="Price Low to High">Price Low to High</option>
+            <option value="Price High to Low">Price High to Low</option>
+          </select>
+        </li>
+      </ul>
+    </main>
   </div>
 
+  <div class="max-width">
+    <div class="main-content">
+      <div class="filters-sidebar">
+        <h3>Filters</h3>
 
-  <section></section>
+        <div class="filter-group">
+          <h4>Suppliers Types</h4>
+          <label><input type="checkbox" data-category="supplierTypes" data-type="tradeAssurance">Trade Assurance</label>
+          <label><input type="checkbox" data-category="supplierTypes" data-type="verifiedSuppliers">Verified
+            Supplier</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Products Types</h4>
+          <label><input type="checkbox" data-category="productTypes" data-type="goldSupplier">Gold Supplier</label>
+          <label><input type="checkbox" data-category="productTypes" data-type="paidSamples">Paid Samples</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Conditions</h4>
+          <label><input type="checkbox" data-category="condition" data-type="newStuff">New Stuff</label>
+          <label><input type="checkbox" data-category="condition" data-type="secondHand">Second Hand</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Min Order</h4>
+          <input type="range" id="min-order-range" min="10" max="1000" value="10">
+          <input type="number" id="min-order-input" min="10" max="1000" value="10">
+        </div>
+
+        <div class="filter-group">
+          <h4>Price Range ($)</h4>
+          <div class="price-range-inputs">
+            <input type="number" id="price-min-input" min="0" max="6000" value="0" placeholder="Min">
+            <span>to</span>
+            <input type="number" id="price-max-input" min="0" max="6000" value="6000" placeholder="Max">
+          </div>
+          <input type="range" id="price-min-range" min="0" max="6000" value="0">
+          <input type="range" id="price-max-range" min="0" max="6000" value="6000">
+        </div>
+
+        <button id="clear-filters-btn" class="clear-filters-btn">Clear Filters</button>
+      </div>
+
+      <div class="product-listing">
+        <div class="sort-controls">
+          <div class="result-count-text">Showing all products</div>
+        </div>
+
+        <div class="product-grid" id="product-grid"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 

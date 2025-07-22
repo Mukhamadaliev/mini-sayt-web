@@ -1,262 +1,372 @@
-// Lang va city select
-document.getElementById('lang-select').onchange = function () {
-    console.log('Til:', this.value);
-};
-document.getElementById('city-select').onchange = function () {
-    console.log('Shahar:', this.value);
-};
+document.addEventListener('DOMContentLoaded', () => {
+    // Filters object
+    const filters = {
+        category: "all",
+        supplierTypes: { tradeAssurance: false, verifiedSuppliers: false },
+        productTypes: { goldSupplier: false, paidSamples: false },
+        condition: { newStuff: false, secondHand: false },
+        minOrder: 10,
+        priceRange: { min: 0, max: 6000 },
+        sort: "Best Match"
+    };
 
-// Modal tugmalar
-document.querySelectorAll('.modal-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        let modalId = btn.getAttribute('data-modal');
-        document.getElementById(modalId).style.display = 'flex';
-    });
-});
+    // Product data
+    const products = [
+        {
+            name: "Zenbook Pro 14 Duo OLED (UX8402, 11th Gen Intel)",
+            price: 1854,
+            originalPrice: 1911,
+            rating: 5,
+            sold: 120,
+            image: "assets/img-1-removebg-preview.png"
+        },
+        {
+            name: "Vivobook S 16X OLED (M5602, AMD Ryzen 5000)",
+            price: 1439,
+            originalPrice: 1410,
+            rating: 4.8,
+            sold: 50,
+            image: "assets/img-2-removebg-preview.png"
+        },
+        {
+            name: "Vivobook 13 Slate OLED (T3300, 11th Gen Intel)",
+            price: 575,
+            originalPrice: 580,
+            rating: 4.8,
+            sold: 24,
+            image: "assets/img-3-removebg-preview.png"
+        },
+        {
+            name: "Zenbook Pro 16X OLED (UX7602, 11th Gen Intel)",
+            price: 2237,
+            originalPrice: 2340,
+            rating: 4.7,
+            sold: 80,
+            image: "assets/img-4-removebg-preview.png"
+        },
+        {
+            name: "ProArt Studiobook Pro 16 OLED (W7600,11th Gen Intel)",
+            price: 5881,
+            originalPrice: 5900,
+            rating: 4.9,
+            sold: 68,
+            image: "assets/img-1-removebg-preview.png"
+        },
+        {
+            name: "Vivobook Go 14 Flip (TP1400, 11th Gen Intel)",
+            price: 400,
+            originalPrice: 450,
+            rating: 3.5,
+            sold: 32,
+            image: "assets/img-3-removebg-preview.png"
+        },
+        {
+            name: "Zenbook 14 Flip OLED (UP5401, 11th Gen Intel)",
+            price: 450,
+            originalPrice: 560,
+            rating: 4.5,
+            sold: 100,
+            image: "assets/img-4-removebg-preview.png"
+        },
+        {
+            name: "ProArt Studiobook 16 OLED (H7600, 12th Gen Intel)",
+            price: 2890,
+            originalPrice: 2900,
+            rating: 4.9,
+            sold: 140,
+            image: "assets/img-2-removebg-preview.png"
+        }
+    ];
 
-// Modal yopish
-document.querySelectorAll('.close-modal').forEach(btn => {
-    btn.addEventListener('click', () => {
-        btn.closest('.modal').style.display = 'none';
-    });
-});
+    // Cart functionality
+    const cart = [];
+    let selectedProduct = null;
 
-// Modal foniga bosilsa yopiladi
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', e => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
-});
-
-// Profile modal (o'ngdan chiqadi)
-const profileBtn = document.getElementById('profile-btn');
-const profileModal = document.getElementById('profile-modal');
-const closeProfile = document.querySelector('.close-profile');
-
-profileBtn.addEventListener('click', () => {
-    profileModal.classList.add('active');
-});
-closeProfile.addEventListener('click', () => {
-    profileModal.classList.remove('active');
-});
-
-// Mahsulot ma'lumotlarini saqlash uchun ob'ektlar massivi
-const products = [
-    {
-        id: 1,
-        name: "Zenbook Pro 14 Duo OLED (UX8402, 11th Gen Intel)",
-        price: 1854,
-        sold: 120,
-        image: "assets/img-1-removebg-preview.png"
-    },
-    {
-        id: 2,
-        name: "Vivobook S 16X OLED (M5602, AMD Ryzen 5000)",
-        price: 1439,
-        sold: 50,
-        image: "assets/img-2-removebg-preview.png"
-    },
-    {
-        id: 3,
-        name: "Vivobook 13 Slate OLED (T3300, 11th Gen Intel)",
-        price: 575,
-        sold: 24,
-        image: "assets/img-3-removebg-preview.png"
-    },
-    {
-        id: 4,
-        name: "Zenbook Pro 16X OLED (UX7602, 11th Gen Intel)",
-        price: 2237,
-        sold: 80,
-        image: "assets/img-4-removebg-preview.png"
-    },
-    {
-        id: 5,
-        name: "ProArt Studiobook 16 OLED (W7600, 11th Gen Intel)",
-        price: 5881,
-        sold: 68,
-        image: "assets/img-1-removebg-preview.png"
-    },
-    {
-        id: 6,
-        name: "Vivobook Go 14 Flip (TP1400, 11th Gen Intel)",
-        price: 400,
-        sold: 32,
-        image: "assets/img-3-removebg-preview.png"
-    },
-    {
-        id: 7,
-        name: "Zenbook 14 Flip OLED (UP5401, 11th Gen Intel)",
-        price: 450,
-        sold: 100,
-        image: "assets/img-1-removebg-preview.png"
-    },
-    {
-        id: 8,
-        name: "ProArt Studiobook 16 OLED (H7600, 12th Gen Intel)",
-        price: 2890,
-        sold: 140,
-        image: "assets/img-4-removebg-preview.png"
-    }
-];
-
-// Saralash parametrlari uchun ob'ekt
-const sortSettings = {
-    sort: "Best Match"
-};
-
-// HTML elementlariga murojaatlar - will be defined after dynamic injection
-let productGrid;
-let sortDropdown;
-let resultCount;
-
-// Mahsulotlarni ko'rsatish funksiyasi
-function displayProducts(sortedProducts) {
-    if (!productGrid) return; // Ensure element exists
-
-    productGrid.innerHTML = '';
-    if (sortedProducts.length === 0) {
-        productGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">Hech qanday mahsulot topilmadi.</p>';
-        resultCount.textContent = '0';
-        return;
+    // === Helper functions ===
+    function getNestedFilterValue(obj, path) {
+        return path.split('.').reduce((o, k) => o[k], obj);
     }
 
-    sortedProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p class="price">$${product.price}</p>
-            <div class="stars">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bx-star"></i>
+    function setNestedFilterValue(obj, path, value) {
+        const keys = path.split('.');
+        keys.reduce((o, k, i) => {
+            if (i === keys.length - 1) o[k] = value;
+            return o[k];
+        }, obj);
+    }
+
+    function renderStars(rating) {
+        const full = Math.floor(rating);
+        const half = rating % 1 !== 0;
+        let html = '';
+        for (let i = 0; i < full; i++) html += '<i class="bx bxs-star"></i>';
+        if (half) html += '<i class="bx bxs-star-half"></i>';
+        for (let i = 0; i < 5 - full - (half ? 1 : 0); i++) html += '<i class="bx bx-star"></i>';
+        return html;
+    }
+
+    // === Filter and display products ===
+    function applyFilters() {
+        let filteredProducts = [...products];
+
+        // Filter by category
+        if (filters.category !== "all") {
+            filteredProducts = filteredProducts.filter(product =>
+                product.name.toLowerCase().includes(filters.category.toLowerCase())
+            );
+        }
+
+        // Filter by price range
+        filteredProducts = filteredProducts.filter(product =>
+            product.price >= filters.priceRange.min &&
+            product.price <= filters.priceRange.max
+        );
+
+        // Filter by min order (just for demonstration)
+        filteredProducts = filteredProducts.filter(product =>
+            product.price >= filters.minOrder
+        );
+
+        // Sort products
+        if (filters.sort === "Price Low to High") {
+            filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (filters.sort === "Price High to Low") {
+            filteredProducts.sort((a, b) => b.price - a.price);
+        }
+
+        displayProducts(filteredProducts);
+    }
+
+    function displayProducts(productsToDisplay) {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = '';
+
+        if (productsToDisplay.length === 0) {
+            grid.innerHTML = '<p class="no-products">No products match your filters</p>';
+            return;
+        }
+
+        productsToDisplay.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${p.image}" alt="${p.name}">
+                <h3>${p.name}</h3>
+                <div class="price">$${p.price}</div>
+                <div class="stars">${renderStars(p.rating)}</div>
+                <div class="sold-count">Sold ${p.sold}</div>
+                <button class="buy-btn" data-id="${p.name}">Add to Cart</button>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Update result count
+        const resultCount = document.querySelector('.result-count-text');
+        if (resultCount) {
+            resultCount.textContent = `Showing ${productsToDisplay.length} of ${products.length} products`;
+        }
+    }
+
+    function updateCartDisplay() {
+        const cartItemsElement = document.getElementById('cart-items');
+        if (!cartItemsElement) return;
+
+        if (cart.length === 0) {
+            cartItemsElement.innerHTML = '<p>Your cart is currently empty</p>';
+            return;
+        }
+
+        cartItemsElement.innerHTML = `
+            <div class="cart-items-list">
+                ${cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" width="50">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <div>$${item.price} x ${item.quantity}</div>
+                        </div>
+                    </div>
+                `).join('')}
             </div>
-            <p class="sold-count">Sotilgan: ${product.sold}</p>
-            <button class="buy-btn">Sotib olish</button>
+            <div class="cart-total">
+                <strong>Total: $${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)}</strong>
+            </div>
         `;
-        productGrid.appendChild(productCard);
+    }
+
+    // Cart modal functions
+    function openCartModal() {
+        document.getElementById('cart-modal-right').classList.add('active');
+        document.getElementById('quantity-input').value = 1;
+    }
+
+    function closeCartModal() {
+        document.getElementById('cart-modal-right').classList.remove('active');
+    }
+
+    // === Select elements ===
+    ['lang-select', 'city-select'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.onchange = e => console.log(`${el.id === 'lang-select' ? 'Language' : 'City'}:`, e.target.value);
     });
-    resultCount.textContent = sortedProducts.length;
-}
 
-// Saralash funksiyasi
-function applySorting() {
-    let sorted = [...products];
+    // === Modal buttons ===
+    document.querySelectorAll('.modal-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById(btn.getAttribute('data-modal'));
+            if (modal) modal.style.display = 'flex';
+        });
+    });
 
-    if (sortSettings.sort === "Best Match") {
-        // No specific sorting for "Best Match" - keep original order
-    } else if (sortSettings.sort === "Price: Low to High") {
-        sorted.sort((a, b) => a.price - b.price);
-    } else if (sortSettings.sort === "Price: High to Low") {
-        sorted.sort((a, b) => b.price - a.price);
-    } else if (sortSettings.sort === "Newest") {
-        sorted.sort((a, b) => b.id - a.id); // Assuming higher ID means newer
+    // === Close modal buttons ===
+    document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal');
+            if (modal) modal.style.display = 'none';
+        });
+    });
+
+    // === Close modal when clicking outside ===
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', e => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    });
+
+    // === Profile modal ===
+    const profileBtn = document.getElementById('profile-btn');
+    const profileModal = document.getElementById('profile-modal');
+    const closeProfile = document.querySelector('.close-profile');
+
+    if (profileBtn && profileModal && closeProfile) {
+        profileBtn.addEventListener('click', () => profileModal.classList.add('active'));
+        closeProfile.addEventListener('click', () => profileModal.classList.remove('active'));
     }
 
-    displayProducts(sorted);
-}
+    // === Filter inputs ===
+    const filterInputs = {
+        minOrder: {
+            input: document.getElementById('min-order-input'),
+            range: document.getElementById('min-order-range')
+        },
+        priceMin: {
+            input: document.getElementById('price-min-input'),
+            range: document.getElementById('price-min-range')
+        },
+        priceMax: {
+            input: document.getElementById('price-max-input'),
+            range: document.getElementById('price-max-range')
+        }
+    };
 
-// Boshlang'ich qiymatlarni o'rnatish
-function initializeSortInput() {
-    if (sortDropdown) { // Check if sortDropdown exists before accessing its value
-        sortDropdown.value = sortSettings.sort;
-    }
-}
+    for (let key in filterInputs) {
+        const { input, range } = filterInputs[key];
+        const filterKey = key === 'priceMin' ? 'priceRange.min' : key === 'priceMax' ? 'priceRange.max' : 'minOrder';
 
-// Function to dynamically inject main content
-function injectMainContent() {
-    const mainElement = document.querySelector('main');
-    if (!mainElement) {
-        console.error("Main element not found!");
-        return;
-    }
-
-    const mainContentHTML = `
-        <div class="main-content">
-            <aside class="filters-sidebar">
-                <h3>Filters</h3>
-
-                <div class="filter-group">
-                    <h4>Supplier Types</h4>
-                    <label><input type="checkbox" data-category="supplierTypes" data-type="tradeAssurance"> Trade Assurance</label>
-                    <label><input type="checkbox" data-category="supplierTypes" data-type="verifiedSuppliers"> Verified Suppliers</label>
-                </div>
-
-                <div class="filter-group">
-                    <h4>Product Types</h4>
-                    <label><input type="checkbox" data-category="productTypes" data-type="readyToShip"> Ready to Ship</label>
-                    <label><input type="checkbox" data-category="productTypes" data-type="paidSamples"> Paid Samples</label>
-                </div>
-
-                <div class="filter-group">
-                    <h4>Condition</h4>
-                    <label><input type="checkbox" data-category="condition" data-type="newStuff"> New Stuff</label>
-                    <label><input type="checkbox" data-category="condition" data-type="secondHand"> Second Hand</label>
-                </div>
-
-                <div class="filter-group">
-                    <h4>Min. Order</h4>
-                    <input type="range" id="min-order-range" min="0" max="1000" value="10">
-                    <input type="number" id="min-order-input" min="0" max="1000" value="10">
-                </div>
-
-                <div class="filter-group">
-                    <h4>Price Range ($)</h4>
-                    <div class="price-range-inputs">
-                        <input type="range" id="price-min-range" min="0" max="6000" value="100">
-                        <input type="number" id="price-min-input" min="0" max="6000" value="100">
-                    </div>
-                    <div class="price-range-inputs">
-                        <input type="range" id="price-max-range" min="0" max="6000" value="6000">
-                        <input type="number" id="price-max-input" min="0" max="6000" value="6000">
-                    </div>
-                </div>
-
-                <button id="clear-filters-btn" class="clear-filters-btn">Clear Filters</button>
-            </aside>
-
-            <section class="product-listing">
-                <div class="sort-controls">
-                    <span class="result-count-text">Found <span id="result-count">0</span> results</span>
-                    <select id="sort-dropdown" aria-label="Sort products by">
-                        <option value="Best Match">Best Match</option>
-                        <option value="Price: Low to High">Price: Low to High</option>
-                        <option value="Price: High to Low">Price: High to Low</option>
-                        <option value="Newest">Newest</option>
-                    </select>
-                </div>
-                <div class="product-grid" id="product-grid">
-                    </div>
-            </section>
-        </div>
-    `;
-
-    // Append the dynamically created content to the main element
-    mainElement.insertAdjacentHTML('beforeend', mainContentHTML);
-
-    // After content is injected, get references to the elements
-    productGrid = document.getElementById('product-grid');
-    sortDropdown = document.getElementById('sort-dropdown');
-    resultCount = document.getElementById('result-count');
-
-    // Attach sorting event listener after element is in DOM
-    if (sortDropdown) {
-        sortDropdown.addEventListener('change', (e) => {
-            sortSettings.sort = e.target.value;
-            applySorting();
+        [input, range].forEach(el => {
+            if (el) {
+                el.value = getNestedFilterValue(filters, filterKey);
+                el.addEventListener('input', e => {
+                    setNestedFilterValue(filters, filterKey, parseInt(e.target.value));
+                    if (input) input.value = e.target.value;
+                    if (range) range.value = e.target.value;
+                    applyFilters();
+                });
+            }
         });
     }
 
-    // Initialize display
-    initializeSortInput();
-    applySorting();
-}
+    // === Category and sort ===
+    const categorySelect = document.getElementById('category-select');
+    if (categorySelect) {
+        categorySelect.value = filters.category;
+        categorySelect.onchange = e => {
+            filters.category = e.target.value;
+            applyFilters();
+        };
+    }
 
+    const sortDropdown = document.getElementById('sort-dropdown');
+    if (sortDropdown) {
+        sortDropdown.value = filters.sort;
+        sortDropdown.onchange = e => {
+            filters.sort = e.target.value;
+            applyFilters();
+        };
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-    injectMainContent(); // Inject content on DOM load
+    // === Checkboxes ===
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', e => {
+            const { category, type } = e.target.dataset;
+            if (filters[category] && filters[category][type] !== undefined) {
+                filters[category][type] = e.target.checked;
+                applyFilters();
+            }
+        });
+    });
+
+    // === Clear filters ===
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            filters.category = "all";
+            filters.supplierTypes = { tradeAssurance: false, verifiedSuppliers: false };
+            filters.productTypes = { goldSupplier: false, paidSamples: false };
+            filters.condition = { newStuff: false, secondHand: false };
+            filters.minOrder = 10;
+            filters.priceRange = { min: 0, max: 6000 };
+            filters.sort = "Best Match";
+
+            // Update UI
+            if (categorySelect) categorySelect.value = filters.category;
+            if (sortDropdown) sortDropdown.value = filters.sort;
+
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb.dataset.category && cb.dataset.type) {
+                    cb.checked = false;
+                }
+            });
+
+            Object.keys(filterInputs).forEach(key => {
+                const { input, range } = filterInputs[key];
+                const value = getNestedFilterValue(filters,
+                    key === 'priceMin' ? 'priceRange.min' :
+                        key === 'priceMax' ? 'priceRange.max' : 'minOrder');
+                if (input) input.value = value;
+                if (range) range.value = value;
+            });
+
+            applyFilters();
+        });
+    }
+
+    // === Cart functionality ===
+    document.addEventListener('click', e => {
+        if (e.target.classList.contains('buy-btn')) {
+            const productName = e.target.getAttribute('data-id');
+            selectedProduct = products.find(p => p.name === productName);
+            openCartModal();
+        }
+
+        if (e.target.id === 'confirm-btn') {
+            const qty = parseInt(document.getElementById('quantity-input').value);
+            if (!qty || qty < 1) {
+                alert('Please enter a valid quantity');
+                return;
+            }
+
+            // Add to cart
+            cart.push({ ...selectedProduct, quantity: qty });
+            updateCartDisplay();
+            closeCartModal();
+
+            // Show the main cart modal
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+    });
+
+    // === Initialize ===
+    applyFilters();
+    updateCartDisplay();
 });
