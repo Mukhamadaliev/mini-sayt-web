@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Filters object
+    // ? object
     const filters = {
         category: "all",
         supplierTypes: { tradeAssurance: false, verifiedSuppliers: false },
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sort: "Best Match"
     };
 
-    // Product data
+    // ? divlar va imglar
     const products = [
         {
             name: "Zenbook Pro 14 Duo OLED (UX8402, 11th Gen Intel)",
@@ -78,11 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Cart functionality
     const cart = [];
     let selectedProduct = null;
 
-    // === Helper functions ===
     function getNestedFilterValue(obj, path) {
         return path.split('.').reduce((o, k) => o[k], obj);
     }
@@ -105,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return html;
     }
 
-    // === Filter and display products ===
     function applyFilters() {
         let filteredProducts = [...products];
 
@@ -116,18 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        // Filter by price range
         filteredProducts = filteredProducts.filter(product =>
             product.price >= filters.priceRange.min &&
             product.price <= filters.priceRange.max
         );
 
-        // Filter by min order (just for demonstration)
         filteredProducts = filteredProducts.filter(product =>
             product.price >= filters.minOrder
         );
 
-        // Sort products
         if (filters.sort === "Price Low to High") {
             filteredProducts.sort((a, b) => a.price - b.price);
         } else if (filters.sort === "Price High to Low") {
@@ -160,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.appendChild(card);
         });
 
-        // Update result count
         const resultCount = document.querySelector('.result-count-text');
         if (resultCount) {
             resultCount.textContent = `Showing ${productsToDisplay.length} of ${products.length} products`;
@@ -194,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Cart modal functions
     function openCartModal() {
         document.getElementById('cart-modal-right').classList.add('active');
         document.getElementById('quantity-input').value = 1;
@@ -204,13 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cart-modal-right').classList.remove('active');
     }
 
-    // === Select elements ===
     ['lang-select', 'city-select'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.onchange = e => console.log(`${el.id === 'lang-select' ? 'Language' : 'City'}:`, e.target.value);
     });
 
-    // === Modal buttons ===
     document.querySelectorAll('.modal-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = document.getElementById(btn.getAttribute('data-modal'));
@@ -218,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === Close modal buttons ===
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
@@ -226,14 +215,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === Close modal when clicking outside ===
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', e => {
             if (e.target === modal) modal.style.display = 'none';
         });
     });
 
-    // === Profile modal ===
     const profileBtn = document.getElementById('profile-btn');
     const profileModal = document.getElementById('profile-modal');
     const closeProfile = document.querySelector('.close-profile');
@@ -243,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeProfile.addEventListener('click', () => profileModal.classList.remove('active'));
     }
 
-    // === Filter inputs ===
     const filterInputs = {
         minOrder: {
             input: document.getElementById('min-order-input'),
@@ -276,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === Category and sort ===
     const categorySelect = document.getElementById('category-select');
     if (categorySelect) {
         categorySelect.value = filters.category;
@@ -295,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // === Checkboxes ===
     document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', e => {
             const { category, type } = e.target.dataset;
@@ -306,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === Clear filters ===
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
@@ -341,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === Cart functionality ===
     document.addEventListener('click', e => {
         if (e.target.classList.contains('buy-btn')) {
             const productName = e.target.getAttribute('data-id');
@@ -356,12 +338,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Add to cart
             cart.push({ ...selectedProduct, quantity: qty });
             updateCartDisplay();
             closeCartModal();
 
-            // Show the main cart modal
             document.getElementById('cart-modal').style.display = 'flex';
         }
     });
