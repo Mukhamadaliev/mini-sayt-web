@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyFilters() {
         let filteredProducts = [...products];
 
-        // Filter by category
         if (filters.category !== "all") {
             filteredProducts = filteredProducts.filter(product =>
                 product.name.toLowerCase().includes(filters.category.toLowerCase())
@@ -139,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML = '<p class="no-products">No products match your filters</p>';
             return;
         }
-
+        // ? product cardlar
         productsToDisplay.forEach(p => {
             const card = document.createElement('div');
             card.className = 'product-card';
@@ -301,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filters.priceRange = { min: 0, max: 6000 };
             filters.sort = "Best Match";
 
-            // Update UI
             if (categorySelect) categorySelect.value = filters.category;
             if (sortDropdown) sortDropdown.value = filters.sort;
 
@@ -346,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // === Initialize ===
     applyFilters();
     updateCartDisplay();
 });
