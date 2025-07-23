@@ -550,6 +550,7 @@ main {
   background-color: #357ABD;
 }
 
+
 /* ? Media styles */
 @media (max-width: 768px) {
   header {
@@ -617,5 +618,72 @@ main {
 
   .product-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #4a4a4a;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  header h1 {
+    width: auto;
+    margin-bottom: 0;
+    text-align: left;
+    flex-grow: 1;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 999;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu select,
+  .nav-menu span,
+  .nav-menu .header-right {
+    width: 100%;
+    margin-bottom: 15px;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .nav-menu span input {
+    margin: 0;
   }
 }
