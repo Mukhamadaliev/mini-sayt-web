@@ -2,248 +2,260 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Odaplace</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Odaplace</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="max-width">
-      <div class="background">
-        <!-- <header class="display">
-          <h1>Odaplace</h1>
-          <br>
+    <header class="display">
+        <h1>Odaplace</h1>
+        <br>
 
-          <select name="city" id="city-select">
-            <option value="newyork">New York</option>
-            <option value="london">London</option>
-            <option value="tokyo">Tokyo</option>
-          </select>
-
-          <span>
-            <input type="text" placeholder="Search for a place" required />
-            <i class='bx bx-search'></i>
-          </span>
-
-          <div class="header-right display">
-            <select name="lang" id="lang-select">
-              <option value="en">Eng</option>
-              <option value="ru">Rus</option>
-              <option value="uz">Uzb</option>
-            </select>
-
-            <button class="modal-btn" data-modal="cart-modal">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-            <button class="modal-btn" data-modal="notif-modal">
-              <i class="fas fa-bell"></i>
-            </button>
-            <button class="modal-btn" data-modal="msg-modal">
-              <i class="fas fa-envelope"></i>
-            </button>
-
-            <div class="img-div" id="profile-btn">
-              <img src="assets/image.png" alt="Profile" />
-            </div>
-          </div>
-        </header> -->
-
-
-
-        <header class="display">
-          <h1>Odaplace</h1>
-          <br>
-
-          <button class="menu-toggle" id="menu-toggle">
+        <button class="menu-toggle" id="menu-toggle">
             <i class='bx bx-menu'></i>
-          </button>
+        </button>
 
-          <div class="nav-menu" id="nav-menu">
+        <div class="nav-menu" id="nav-menu">
             <select name="city" id="city-select">
-              <option value="newyork">New York</option>
-              <option value="london">London</option>
-              <option value="tokyo">Tokyo</option>
+                <option value="newyork">New York</option>
+                <option value="london">London</option>
+                <option value="tokyo">Tokyo</option>
             </select>
 
             <span>
-              <input type="text" placeholder="Search for a place" required />
-              <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search for a place" required />
+                <i class='bx bx-search'></i>
             </span>
 
             <div class="header-right display">
-              <select name="lang" id="lang-select">
-                <option value="en">Eng</option>
-                <option value="ru">Rus</option>
-                <option value="uz">Uzb</option>
-              </select>
+                <select name="lang" id="lang-select">
+                    <option value="en">Eng</option>
+                    <option value="ru">Rus</option>
+                    <option value="uz">Uzb</option>
+                </select>
 
-              <button class="modal-btn" data-modal="cart-modal">
-                <i class="fas fa-shopping-cart"></i>
-              </button>
-              <button class="modal-btn" data-modal="notif-modal">
-                <i class="fas fa-bell"></i>
-              </button>
-              <button class="modal-btn" data-modal="msg-modal">
-                <i class="fas fa-envelope"></i>
-              </button>
+                <button class="modal-btn" data-modal="cart-modal">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+                <button class="modal-btn" data-modal="notif-modal">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="modal-btn" data-modal="msg-modal">
+                    <i class="fas fa-envelope"></i>
+                </button>
 
-              <div class="img-div" id="profile-btn">
-                <img src="assets/image.png" alt="Profile" />
-              </div>
+                <div class="img-div" id="profile-btn">
+                    <img src="assets/image.png" alt="Profile" />
+                </div>
             </div>
-          </div>
-        </header>
+        </div>
+    </header>
 
-
-
-
-        
-
-      </div>
+    <br><br>
     </div>
-  </div>
-
-  <!-- Right Side Cart Modal for Add to Cart -->
-  <div id="cart-modal-right" class="modal-right">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeCartModal()">&times;</span>
-      <h3>Add to Cart</h3>
-      <div class="quantity-control">
-        <h4>Enter quantity</h4>
-        <input type="number" id="quantity-input" min="1" value="1">
-        <button id="confirm-btn">Yuborish</button>
-      </div>
     </div>
-  </div>
-
-  <!-- Main Cart View Modal -->
-  <div class="modal" id="cart-modal">
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      <h3>Your Cart</h3>
-      <div id="cart-items">
-        <!-- Cart items will be displayed here -->
-      </div>
     </div>
-  </div>
-
-  <div class="modal modall" id="notif-modal">
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt ipsum eveniet quasi reprehenderit! Eligendi
-        officia labore vitae consequatur ut, in quidem explicabo facere enim, possimus sint accusamus at porro sequi?
-      </h3>
+    <div id="cart-modal-right" class="modal-right">
+        <div class="modal-content" id="quantity-control-content">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h3>Savatga qo'shish</h3>
+            <img id="selected-product-image" src="" alt="Mahsulot rasmi">
+            <h4>Miqdorini kiriting</h4>
+            <input type="number" id="quantity-input" min="1" value="1">
+            <button id="confirm-btn">Yuborish</button>
+        </div>
     </div>
-  </div>
 
-  <div class="modal modall" id="msg-modal">
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis velit aut sunt autem distinctio quisquam
-        explicabo beatae? Non quos ipsum odio quo. Iste dolore nihil quibusdam blanditiis quas nostrum nulla!</h3>
+    <!-- ? karzinka Modal -->
+    <div class="modal modall" id="cart-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Savat</h3>
+            <div id="cart-items"></div>
+        </div>
     </div>
-  </div>
 
-  <div class="profile-modal" id="profile-modal">
-    <button class="close-profile">&times;</button>
-    <img src="assets/image.png" alt="Profile" class="img-modal-right">
-    <h2>Name: <strong>Ibrohim</strong></h2>
-    <h2>Email: <strong>muhammadaliyevibrohim@gmail.com</strong></h2>
-    <h2>Manzil: <strong>Samarkand</strong></h2>
-  </div>
+    <!-- ? budillik Modal -->
+    <div class="modal modall" id="notif-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt corrupti velit eaque itaque rerum harum
+                amet officiis quo totam deleniti. Cum alias est cumque ipsam sapiente laudantium optio iste fugiat.</p>
+        </div>
+    </div>
 
-  <div class="max-width">
+    <!-- ? Email Modal -->
+    <div class="modal modall" id="msg-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nulla at voluptate. Praesentium voluptatum
+            corporis deleniti consectetur minima fuga, recusandae magnam aperiam suscipit sunt fugiat, debitis, mollitia
+            ullam soluta laboriosam!
+        </div>
+    </div>
+
+    <!-- ? img  Modal -->
+    <div class="profile-modal" id="profile-modal">
+        <button class="close-profile">&times;</button>
+        <img src="assets/image.png" alt="Profile" class="img-modal-right">
+        <p>Name: <strong>Ibrohim</strong></p>
+        <p>Email: <strong>muhammadaliyevibrohim@gmail.com</strong></p>
+        <p>Manzil: <strong>Samarkand</strong></p>
+    </div>
+
     <main>
-      <ul class="main-nav-list">
-        <li>
-          <select name="" id="category-select" aria-label="Category">
-            <option value="all">All Categories</option>
-            <option value="laptops">Laptops</option>
-            <option value="tablets">Tablets</option>
-          </select>
-        </li>
-        <li>Ready to ship</li>
-        <li>Personal Protective</li>
-        <li>
-          <select name="" id="" aria-label="Buyer Central">
-            <option value="">Buyer Central</option>
-          </select>
-        </li>
-        <li>
-          <select name="" id="" aria-label="Sell on Odaplace.com">
-            <option value="">Sell on Odaplace.com</option>
-          </select>
-        </li>
-        <li>
-          <select name="" id="sort-dropdown" aria-label="Help">
-            <option value="Best Match">Best Match</option>
-            <option value="Price Low to High">Price Low to High</option>
-            <option value="Price High to Low">Price High to Low</option>
-          </select>
-        </li>
-      </ul>
+        <ul class="main-nav-list">
+            <li>
+                <button class="modal-trigger-btn" data-modal-target="category-modal">
+                    <span id="selected-category-text">Barcha kategoriyalar</span> <i class='bx bx-chevron-down'></i>
+                </button>
+            </li>
+            <li>Ready to ship</li>
+            <li>Personal Protective</li>
+            <li>
+                <button class="modal-trigger-btn" data-modal-target="buyer-central-modal">
+                    <span id="selected-buyer-central-text">Xaridor markazi</span> <i class='bx bx-chevron-down'></i>
+                </button>
+            </li>
+            <li>
+                <button class="modal-trigger-btn" data-modal-target="sell-modal">
+                    <span id="selected-sell-text">Odaplace.comda soting</span> <i class='bx bx-chevron-down'></i>
+                </button>
+            </li>
+            <li>
+                <button class="modal-trigger-btn" data-modal-target="sort-modal">
+                    <span id="selected-sort-text">Eng mos keladigan</span> <i class='bx bx-chevron-down'></i>
+                </button>
+            </li>
+        </ul>
     </main>
-  </div>
 
-  <div class="max-width">
-    <div class="main-content">
-      <div class="filters-sidebar">
-        <h3>Filters</h3>
+    <div class="max-width">
+        <div class="main-content">
+            <div class="filters-sidebar">
+                <h3>Filtrlar</h3>
 
-        <div class="filter-group">
-          <h4>Suppliers Types</h4>
-          <label><input type="checkbox" data-category="supplierTypes" data-type="tradeAssurance">Trade Assurance</label>
-          <label><input type="checkbox" data-category="supplierTypes" data-type="verifiedSuppliers">Verified
-            Supplier</label>
+                <div class="filter-group">
+                    <h4>Yetkazib beruvchi turlari</h4>
+                    <label><input type="checkbox" data-type="tradeAssurance">Savdo
+                        kafolati</label>
+                    <label><input type="checkbox" data-type="verifiedSuppliers">Tasdiqlangan yetkazib beruvchi</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Mahsulot turlari</h4>
+                    <label><input type="checkbox" data-type="goldSupplier">Oltin yetkazib
+                        beruvchi</label>
+                    <label><input type="checkbox" data-type="paidSamples">Pullik
+                        namunalar</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Holati</h4>
+                    <label><input type="checkbox" data-type="newStuff">Yangi mahsulot</label>
+                    <label><input type="checkbox" data-type="secondHand">Ikkinchi qo'l</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Minimal buyurtma</h4>
+                    <input type="range" min="10" max="1000" value="10">
+                    <input type="number" min="10" max="1000" value="10">
+                </div>
+
+                <div class="filter-group">
+                    <h4>Narx oralig'i ($)</h4>
+                    <div class="price-range-inputs">
+                        <input type="number" min="0" max="6000" value="0" placeholder="Min">
+                        <span>dan</span>
+                        <input type="number" min="0" max="6000" value="6000" placeholder="Max">
+                    </div>
+                    <input type="range" min="0" max="6000" value="0">
+                    <input type="range" min="0" max="6000" value="6000">
+                </div>
+
+                <button id="clear-filters-btn" class="clear-filters-btn">Filtrlarni tozalash</button>
+            </div>
+
+            <div class="product-listing">
+                <div class="sort-controls">
+                    <div class="result-count-text"><span id="result-count">0</span> mahsulot topildi</div>
+                </div>
+
+                <div class="product-grid" id="product-grid"></div>
+            </div>
         </div>
-
-        <div class="filter-group">
-          <h4>Products Types</h4>
-          <label><input type="checkbox" data-category="productTypes" data-type="goldSupplier">Gold Supplier</label>
-          <label><input type="checkbox" data-category="productTypes" data-type="paidSamples">Paid Samples</label>
-        </div>
-
-        <div class="filter-group">
-          <h4>Conditions</h4>
-          <label><input type="checkbox" data-category="condition" data-type="newStuff">New Stuff</label>
-          <label><input type="checkbox" data-category="condition" data-type="secondHand">Second Hand</label>
-        </div>
-
-        <div class="filter-group">
-          <h4>Min Order</h4>
-          <input type="range" id="min-order-range" min="10" max="1000" value="10">
-          <input type="number" id="min-order-input" min="10" max="1000" value="10">
-        </div>
-
-        <div class="filter-group">
-          <h4>Price Range ($)</h4>
-          <div class="price-range-inputs">
-            <input type="number" id="price-min-input" min="0" max="6000" value="0" placeholder="Min">
-            <span>to</span>
-            <input type="number" id="price-max-input" min="0" max="6000" value="6000" placeholder="Max">
-          </div>
-          <input type="range" id="price-min-range" min="0" max="6000" value="0">
-          <input type="range" id="price-max-range" min="0" max="6000" value="6000">
-        </div>
-
-        <button id="clear-filters-btn" class="clear-filters-btn">Clear Filters</button>
-      </div>
-
-      <div class="product-listing">
-        <div class="sort-controls">
-          <div class="result-count-text">Showing all products</div>
-        </div>
-
-        <div class="product-grid" id="product-grid"></div>
-      </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div class="modal" id="city-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Shahar tanlang</h3>
+            <ul class="modal-options-list" data-target-text="selected-city-text" data-modal-id="city-modal">
+                <li data-value="New York">New York</li>
+                <li data-value="London">London</li>
+                <li data-value="Tokyo">Tokyo</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Kategoriya tanlang</h3>
+            <ul class="modal-options-list" data-target-text="selected-category-text" data-modal-id="category-modal">
+                <li data-value="Barcha kategoriyalar">Barcha kategoriyalar</li>
+                <li data-value="Noutbuklar">Noutbuklar</li>
+                <li data-value="Telefonlar">Telefonlar</li>
+                <li data-value="Aksessuarlar">Aksessuarlar</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="buyer-central-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Xaridor markazi</h3>
+            <ul class="modal-options-list" data-target-text="selected-buyer-central-text"
+                data-modal-id="buyer-central-modal">
+                <li data-value="Xaridor markazi-1">Xaridor markazi-1</li>
+                <li data-value="Xaridor markazi-2">Xaridor markazi-2</li>
+                <li data-value="Xaridor markazi-3">Xaridor markazi-3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="sell-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Odaplace.comda soting</h3>
+            <ul class="modal-options-list" data-target-text="selected-sell-text" data-modal-id="sell-modal">
+                <li data-value="Odaplace.comda soting-1">Odaplace.comda soting-1</li>
+                <li data-value="Odaplace.comda soting-2">Odaplace.comda soting-2</li>
+                <li data-value="Odaplace.comda soting-3">Odaplace.comda soting-3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="sort-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>Saralash</h3>
+            <ul class="modal-options-list" data-target-text="selected-sort-text" data-modal-id="sort-modal">
+                <li data-value="Eng mos keladigan">Eng mos keladigan</li>
+                <li data-value="Narx: Pastdan balandga">Narx: Pastdan balandga</li>
+                <li data-value="Narx: Balanddan pastga">Narx: Balanddan pastga</li>
+                <li data-value="Eng yangi">Eng yangi</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
